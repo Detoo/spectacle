@@ -7,9 +7,19 @@ windowPositionCalculationRegistry.registerWindowPositionCalculationWithAction(fu
         if (SpectacleCalculationHelpers.rectCenteredWithinRect(oneHalfRect, windowRect)) {
             return twoThirdRect;
         }
+        var threeFourthRect = SpectacleCalculationHelpers.copyRect(oneHalfRect);
+        threeFourthRect.width = Math.floor(visibleFrameOfDestinationScreen.width * 3.0 / 4.0);
         if (SpectacleCalculationHelpers.rectCenteredWithinRect(twoThirdRect, windowRect)) {
-            var oneThirdsRect = SpectacleCalculationHelpers.copyRect(oneHalfRect);
-            oneThirdsRect.width = Math.floor(visibleFrameOfDestinationScreen.width / 3.0);
+            return threeFourthRect;
+        }
+        var oneFourthRect = SpectacleCalculationHelpers.copyRect(oneHalfRect);
+        oneFourthRect.width = Math.floor(visibleFrameOfDestinationScreen.width / 4.0);
+        if (SpectacleCalculationHelpers.rectCenteredWithinRect(threeFourthRect, windowRect)) {
+            return oneFourthRect;
+        }
+        var oneThirdsRect = SpectacleCalculationHelpers.copyRect(oneHalfRect);
+        oneThirdsRect.width = Math.floor(visibleFrameOfDestinationScreen.width / 3.0);
+        if (SpectacleCalculationHelpers.rectCenteredWithinRect(oneFourthRect, windowRect)) {
             return oneThirdsRect;
         }
     }
